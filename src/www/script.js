@@ -16,7 +16,16 @@ const loadTasks = () => {
 }
 
 
-const add = async () => {}
+const add = async () => {
+  var task = document.getElementById("task-name").value;
+  var indexTask = taskList.length+1;
+  taskObject = JSON.stringify({id: indexTask, title: task, done: false});
+  taskList.push(JSON.parse(taskObject));
+  console.log(taskList);
+  addHTMLElement(taskList[indexTask-1]);
+}
+
+
 
 const remove = () => {}
 
@@ -31,14 +40,15 @@ loadTasks();
 
 
 function addHTML() {
-  const taskListDiv = document.getElementById("pendingTasks");
-  taskList.forEach(task => {
-    const taskContainer = document.createElement("div"); // Crear un elemento div para cada tarea
-    taskContainer.classList.add("task-container"); 
-    const taskTitle = document.createElement("p");
-    taskTitle.textContent = task.title;
-    taskContainer.appendChild(taskTitle); // Agregar el título de la tarea al div
-    taskListDiv.appendChild(taskContainer); // Agregar el div al contenedor principal
-  });
+  taskList.forEach(task => addHTMLElement(task));
 }
 
+function addHTMLElement(task) {
+  const taskListDiv = document.getElementById("pendingTasks");
+  const taskContainer = document.createElement("div"); // Crear un elemento div para cada tarea
+  taskContainer.classList.add("task-container"); 
+  const taskTitle = document.createElement("p");
+  taskTitle.textContent = task.title;
+  taskContainer.appendChild(taskTitle); // Agregar el título de la tarea al div
+  taskListDiv.appendChild(taskContainer); // Agregar el div al contenedor principal
+}
