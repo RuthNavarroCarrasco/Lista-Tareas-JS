@@ -18,7 +18,6 @@ const loadTasks = () => {
 
 
 const add = async () => {
-  
   var task = document.getElementById("task-name").value;
   var indexTask = searchIndex();
   console.log({id: indexTask, title: task, done: false});
@@ -27,7 +26,9 @@ const add = async () => {
   console.log(taskList);
   
   addHTMLElement(taskList[taskList.length-1]);
+  window.navigator.vibrate(200);
   document.getElementById("task-name").value = "";
+  
 }
 
 
@@ -110,7 +111,6 @@ const toggleDone = (element) => {
 }
 
 function changeColor(element) {
-  
   for (let i = 0; i < taskList.length; i++) {
     if (element.id == taskList[i].id) { 
       element.style.backgroundColor = "#f44336";}
